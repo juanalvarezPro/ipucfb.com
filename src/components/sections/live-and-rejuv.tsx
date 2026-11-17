@@ -103,27 +103,49 @@ function Tape({ lines, tone, reverse }: { lines: string[]; tone: "fire" | "dark"
 
 export function RejuvBanner() {
   return (
-    <a
-      href="#rejuv"
-      aria-label="Rejuv 2.0: diez veces mejor que Daniel y sus amigos (Daniel 1:20). Ver más"
-      className="group relative block overflow-hidden bg-[#0b0306] py-14 sm:py-20"
-    >
-      <span aria-hidden className="absolute inset-0 bg-[radial-gradient(50%_80%_at_50%_50%,rgb(255_80_0/0.35),transparent_70%)]" />
-      <div className="relative -mx-6 -rotate-3 sm:-rotate-2">
-        <Tape lines={TAPE_FIRE} tone="fire" />
-      </div>
-      <div className="relative -mx-6 mt-3 rotate-2 sm:rotate-[1.5deg]">
-        <Tape lines={TAPE_DARK} tone="dark" reverse />
-      </div>
+    <section aria-labelledby="espiritu-joven" className="relative overflow-hidden bg-[#0b0306] pt-16 text-white sm:pt-24">
+      <span aria-hidden className="absolute inset-0 bg-[radial-gradient(50%_70%_at_50%_70%,rgb(255_80_0/0.35),transparent_70%)]" />
 
-      {/* Sello central */}
-      <span className="absolute left-1/2 top-1/2 z-10 grid size-28 -translate-x-1/2 -translate-y-1/2 rotate-[-12deg] place-items-center rounded-full border-4 border-[#0b0306] bg-[#ffd23f] text-center text-[#1a0500] shadow-[0_0_0_4px_#ff8a00,0_0_40px_rgb(255_140_0/0.9)] transition duration-300 group-hover:rotate-0 group-hover:scale-110 sm:size-36">
-        <span className="leading-none">
-          <span className="block font-display text-5xl font-bold sm:text-6xl">10x</span>
-          <span className="mt-1 block text-[0.6rem] font-black uppercase tracking-[0.18em] sm:text-xs">Daniel 1:20</span>
+      {/* Contexto: sin esto, «10x» no se entiende */}
+      <Container className="relative text-center">
+        <p className="inline-flex items-center gap-2 rounded-full border border-[#ff8a00]/50 bg-[#ff8a00]/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.28em] text-[#ffb347] sm:text-sm">
+          <Flame className="size-4 fill-[#ffd23f] text-[#ff5e00]" aria-hidden />
+          Espíritu joven
+        </p>
+        <h2 id="espiritu-joven" className="mx-auto mt-5 max-w-3xl font-display text-4xl font-bold uppercase leading-[1.02] sm:text-6xl">
+          Joven, Dios te quiere <span className="text-fire">10 veces mejor</span>
+        </h2>
+        <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/80 sm:text-xl">
+          Daniel y sus amigos eran jóvenes como tú. No se contaminaron, se mantuvieron firmes… y el rey{" "}
+          <strong className="text-white">«los halló diez veces mejores»</strong> que todos los sabios del reino.
+          <span className="mt-2 block text-sm font-bold uppercase tracking-[0.25em] text-[#ffb347]">Daniel 1:20</span>
+        </p>
+        <p className="mt-6 font-display text-2xl uppercase text-white sm:text-3xl">
+          ¿Y tú? <span className="text-fire">Vamos por el 10x 🔥</span>
+        </p>
+      </Container>
+
+      <a
+        href="#rejuv"
+        aria-label="Ir a Rejuv 2.0"
+        className="group relative mt-6 block py-14 sm:mt-8 sm:py-20"
+      >
+        <div className="relative -mx-6 -rotate-3 sm:-rotate-2">
+          <Tape lines={TAPE_FIRE} tone="fire" />
+        </div>
+        <div className="relative -mx-6 mt-3 rotate-2 sm:rotate-[1.5deg]">
+          <Tape lines={TAPE_DARK} tone="dark" reverse />
+        </div>
+
+        {/* Sello central */}
+        <span className="absolute left-1/2 top-1/2 z-10 grid size-28 -translate-x-1/2 -translate-y-1/2 rotate-[-12deg] place-items-center rounded-full border-4 border-[#0b0306] bg-[#ffd23f] text-center text-[#1a0500] shadow-[0_0_0_4px_#ff8a00,0_0_40px_rgb(255_140_0/0.9)] transition duration-300 group-hover:rotate-0 group-hover:scale-110 sm:size-36">
+          <span className="leading-none">
+            <span className="block font-display text-5xl font-bold sm:text-6xl">10x</span>
+            <span className="mt-1 block text-[0.6rem] font-black uppercase tracking-[0.18em] sm:text-xs">Daniel 1:20</span>
+          </span>
         </span>
-      </span>
-    </a>
+      </a>
+    </section>
   );
 }
 
