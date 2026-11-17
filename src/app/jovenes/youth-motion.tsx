@@ -281,8 +281,28 @@ export function CampTeaser() {
         whileInView={{ opacity: 1, y: 0, rotate: -0.6 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ type: "spring", stiffness: 140, damping: 18 }}
-        className="relative mb-12 overflow-hidden rounded-[2.2rem] border border-[#ff8a00]/50 bg-[linear-gradient(135deg,#2a0a02_0%,#0b0306_55%,#1f0802_100%)] p-6 shadow-[0_30px_90px_-30px_rgb(255_80_0/0.8)] sm:p-10"
+        className="relative isolate mb-12 overflow-hidden rounded-[2.2rem] border border-[#ff8a00]/50 bg-[#0b0306] p-6 shadow-[0_30px_90px_-30px_rgb(255_80_0/0.8)] sm:p-10"
       >
+        {/* Foto de la finca, desenfocada desde el archivo: incógnita total */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://media.sonarpiano.com/ipucfb/jovenes/campamento-incognita.webp"
+          alt=""
+          aria-hidden
+          loading="lazy"
+          className="absolute inset-0 h-full w-full scale-110 object-cover opacity-80"
+        />
+        {/* Celular: la foto asoma arriba; escritorio: a la derecha */}
+        <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-[#0b0306]/20 via-[#0b0306]/75 to-[#0b0306] sm:hidden" />
+        <div aria-hidden className="absolute inset-0 hidden bg-gradient-to-r from-[#0b0306] via-[#0b0306]/80 to-[#0b0306]/10 sm:block" />
+        <div aria-hidden className="absolute inset-0 hidden bg-gradient-to-t from-[#0b0306]/90 via-transparent to-transparent sm:block" />
+        <span
+          aria-hidden
+          className="pointer-events-none absolute right-4 top-4 select-none font-display text-[8rem] font-bold leading-none text-white/15 sm:right-6 sm:top-1/2 sm:-translate-y-1/2 sm:text-[16rem] sm:text-white/10 lg:right-24 lg:text-[20rem]"
+        >
+          ?
+        </span>
+
         {/* Fogata */}
         <div aria-hidden className="pointer-events-none absolute -bottom-10 right-4 h-56 w-56 sm:right-16 sm:h-72 sm:w-72">
           {[0, 1, 2].map((i) => (
@@ -305,8 +325,8 @@ export function CampTeaser() {
             <span className="block text-white">2027</span>
           </h3>
           <p className="mt-4 text-lg text-white/80">
-            Fogata, alabanza, aventura y un encuentro con Dios que no vas a olvidar. Los detalles todavía están
-            bajo candado… pero tu cupo empieza con tu inscripción.
+            Una finca, fogata, alabanza, aventura y un encuentro con Dios que no vas a olvidar. ¿Dónde? Eso
+            todavía es una incógnita… pero tu cupo empieza con tu inscripción.
           </p>
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             <LockedChip label="Fecha" />
