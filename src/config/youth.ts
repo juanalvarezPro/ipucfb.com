@@ -22,7 +22,7 @@ export const directiva: Leader[] = [
     name: "Juan Álvarez",
     photo: `${R2}/juan.webp`,
     instagram: "thisalvarez",
-    bio: "Ingeniero de software y creador de SonarPiano. Cree que la tecnología y la música son herramientas para el Reino. Su meta: una juventud que no se apague.",
+    bio: "Creativo de corazón: ama cada proceso, desde la primera idea hasta verla viva. Ingeniero de software y creador de SonarPiano. Su meta: una juventud que no se apague.",
   },
   {
     role: "Sublíder",
@@ -36,14 +36,14 @@ export const directiva: Leader[] = [
     name: "Marly Cañas",
     photo: `${R2}/marly.webp`,
     instagram: "marlycanasguzman",
-    bio: "Organiza, anota y no deja que nada se pierda. Si te inscribes, ella será la primera en darte la bienvenida.",
+    bio: "Creadora de la marca @mc.leathers. Ama cantar y conversar: si te inscribes, seguro ella será la primera en escribirte para conocerte.",
   },
   {
     role: "Tesorero",
     name: "Elías Londoño",
     photo: `${R2}/elias.webp`,
     instagram: "eliasjlo",
-    bio: "Administra con fidelidad cada recurso del grupo, porque el que es fiel en lo poco, también en lo mucho es fiel.",
+    bio: "Contador de profesión y alegría en persona. Cuida con fidelidad cada recurso del grupo, siempre con una sonrisa.",
   },
   {
     role: "Vocal",
