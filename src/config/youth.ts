@@ -48,12 +48,12 @@ export const directiva: Leader[] = [
   {
     role: "Vocal",
     name: "Cristian García",
-    bio: "La voz de los jóvenes en la mesa: lleva tus ideas y propuestas a la directiva.",
+    bio: "Músico e ingeniero. Ama predicarle a las almas y contar historias de su trabajo: siempre tiene un testimonio que te deja pensando.",
   },
   {
     role: "Asesor",
     name: "Cristian García",
-    bio: "Acompaña y aconseja a la directiva con experiencia, oración y la Palabra.",
+    bio: "Músico e ingeniero con pasión por las almas. Acompaña a la directiva con la Palabra, la oración y las historias que Dios le ha dado en su trabajo.",
   },
   {
     role: "Auxiliar en formación",
