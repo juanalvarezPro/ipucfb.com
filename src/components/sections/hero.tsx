@@ -1,4 +1,4 @@
-import { ChevronDown, MapPin, PlayCircle } from "lucide-react";
+import { ChevronDown, Flame, MapPin, PlayCircle } from "lucide-react";
 import { NextService } from "@/components/next-service";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/section";
@@ -37,14 +37,22 @@ export function Hero() {
             lugar para ti y para los tuyos: ven tal como eres.
           </p>
 
-          <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:mt-[3.6vh] lg:justify-start">
-            <ButtonLink href="#visitanos" size="lg" className="w-full sm:w-auto">
+          <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center lg:mt-[3.6vh] lg:flex-nowrap lg:justify-start">
+            <ButtonLink href="#visitanos" size="lg" className="w-full whitespace-nowrap sm:w-auto lg:px-5">
               <MapPin className="size-5" aria-hidden />
               Planea tu visita
             </ButtonLink>
-            <ButtonLink href="#en-vivo" variant="outline" size="lg" className="w-full sm:w-auto">
+            <ButtonLink href="#en-vivo" variant="outline" size="lg" className="w-full whitespace-nowrap sm:w-auto lg:px-5">
               <PlayCircle className="size-5" aria-hidden />
               Ver en vivo
+            </ButtonLink>
+            <ButtonLink
+              href="/jovenes"
+              size="lg"
+              className="w-full bg-gradient-to-r from-[#ff3d00] to-[#ffb000] text-[#1a0500] shadow-[0_10px_40px_-10px_rgb(255_94_0/0.85)] hover:from-[#ff5a1f] hover:to-[#ffc233] sm:w-auto lg:px-5"
+            >
+              <Flame className="size-5 fill-[#ffd23f] text-[#b32000]" aria-hidden />
+              Jóvenes
             </ButtonLink>
           </div>
 
