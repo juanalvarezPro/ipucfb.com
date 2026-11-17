@@ -42,8 +42,8 @@ export type LeadKind = "PRAYER" | "VISIT" | "CONTACT";
 
 const KIND_LABEL: Record<LeadKind, { title: string; human: string; color: string }> = {
   PRAYER: { title: "Web · Oración", human: "Petición de oración", color: "#00338d" },
-  VISIT: { title: "Web · Visita", human: "Quiere visitarnos", color: "#009fda" },
-  CONTACT: { title: "Web · Contacto", human: "Mensaje", color: "#f0ab00" },
+  VISIT: { title: "Web · Visita", human: "Quiere visitarnos", color: "#3d8bff" },
+  CONTACT: { title: "Web · Contacto", human: "Mensaje", color: "#10110d" },
 };
 
 /**

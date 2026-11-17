@@ -11,7 +11,7 @@ const sourceSans = Source_Sans_3({
 
 const oswald = Oswald({
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["300", "500", "600", "700"],
   variable: "--font-oswald",
   // «optional»: si la fuente no llega a tiempo en 4G lento, el título no se
   // vuelve a pintar (mejor LCP); queda en caché para la siguiente visita.
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#001f56",
+  themeColor: "#05070c",
   width: "device-width",
   initialScale: 1,
 };

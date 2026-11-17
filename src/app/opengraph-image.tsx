@@ -19,7 +19,7 @@ export default async function OpengraphImage() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(180deg, #001f56 0%, #00338d 60%, #002a73 100%)",
+          background: "linear-gradient(180deg, #00338d 0%, #071a45 45%, #05070c 100%)",
           color: "white",
         }}
       >
@@ -27,7 +27,7 @@ export default async function OpengraphImage() {
         <div style={{ marginTop: 36, fontSize: 64, fontWeight: 700, letterSpacing: -1, textTransform: "uppercase" }}>
           {church.motto}
         </div>
-        <div style={{ marginTop: 12, fontSize: 28, color: "#f8c53d", letterSpacing: 6, textTransform: "uppercase" }}>
+        <div style={{ marginTop: 12, fontSize: 28, color: "#74adff", letterSpacing: 6, textTransform: "uppercase" }}>
           {`${church.mottoRef} · ${church.domain}`}
         </div>
       </div>

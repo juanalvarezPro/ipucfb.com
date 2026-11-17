@@ -2,61 +2,62 @@
 
 /* ───────────────────────────────────────────────────────────────
    Design system IPUC · ipucfb.com
-   Basado en la identidad de ipuc.org.co:
-   azul institucional #00338d · celeste #009fda · dorado #f0ab00
+   Estilo juvenil: azul IPUC que se funde en negro + azul eléctrico
+   carbón #10110d · azul #00338d → negro · eléctrico #3d8bff · blanco hueso #f3f3ee
+   (los tokens conservan los nombres navy/sky/gold: navy = carbón, gold = azul eléctrico)
    Tipografía: Source Sans 3 (pariente libre de Myriad Pro) +
    Oswald (display condensada, en el espíritu de Antonim).
    ─────────────────────────────────────────────────────────────── */
 
 @theme {
-  /* Azul institucional — 700 es el azul del logo */
-  --color-navy-50: #eef4ff;
-  --color-navy-100: #dbe6ff;
-  --color-navy-200: #b8ccf5;
-  --color-navy-300: #85a5e6;
-  --color-navy-400: #4f78cf;
-  --color-navy-500: #2552b3;
-  --color-navy-600: #0d40a0;
-  --color-navy-700: #00338d;
-  --color-navy-800: #002a73;
-  --color-navy-900: #001f56;
-  --color-navy-950: #001338;
+  /* Carbón — reemplaza al azul: fondos oscuros y títulos (estilo editorial juvenil) */
+  --color-navy-50: #f4f5f0;
+  --color-navy-100: #e6e8df;
+  --color-navy-200: #c9ccc0;
+  --color-navy-300: #a3a798;
+  --color-navy-400: #767a6c;
+  --color-navy-500: #52554a;
+  --color-navy-600: #34362f;
+  --color-navy-700: #23251f;
+  --color-navy-800: #171914;
+  --color-navy-900: #10110d;
+  --color-navy-950: #090a07;
 
-  /* Celeste — 500 es el celeste del sitio oficial */
-  --color-sky-50: #e9f8fe;
-  --color-sky-100: #cdeffc;
-  --color-sky-200: #9fdff7;
-  --color-sky-300: #5ec9ef;
-  --color-sky-400: #20b3e5;
-  --color-sky-500: #009fda;
-  --color-sky-600: #0081b4;
-  --color-sky-700: #006691;
-  --color-sky-800: #034f6f;
-  --color-sky-900: #073f59;
+  /* Azul — acentos: 500-700 sobre fondo claro, 200-400 sobre fondo oscuro */
+  --color-sky-50: #eef6ff;
+  --color-sky-100: #d6e8ff;
+  --color-sky-200: #a9cdff;
+  --color-sky-300: #74adff;
+  --color-sky-400: #3d8bff;
+  --color-sky-500: #1a5fd6;
+  --color-sky-600: #154cb0;
+  --color-sky-700: #103b8a;
+  --color-sky-800: #0c2c66;
+  --color-sky-900: #081d44;
 
-  /* Dorado — acentos, llamados a la acción */
-  --color-gold-50: #fff8e6;
-  --color-gold-100: #feeebf;
-  --color-gold-200: #fddc80;
-  --color-gold-300: #f8c53d;
-  --color-gold-400: #f0ab00;
-  --color-gold-500: #d69600;
-  --color-gold-600: #b27a00;
-  --color-gold-700: #8a5e05;
+  /* Azul eléctrico — el acento de la marca (botones, palabras clave) */
+  --color-gold-50: #eef6ff;
+  --color-gold-100: #d9eaff;
+  --color-gold-200: #b3d4ff;
+  --color-gold-300: #7db6ff;
+  --color-gold-400: #3d8bff;
+  --color-gold-500: #1f6cf0;
+  --color-gold-600: #1553c4;
+  --color-gold-700: #10409a;
 
   /* Superficies y texto */
-  --color-ink: #0b1530;
-  --color-muted: #51607e;
-  --color-paper: #f7f9fd;
-  --color-line: #e3e9f4;
+  --color-ink: #10110d;
+  --color-muted: #5d6056;
+  --color-paper: #f3f3ee;
+  --color-line: #e2e3da;
 
   --font-sans: var(--font-source-sans), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-oswald), var(--font-source-sans), ui-sans-serif, sans-serif;
 
   --radius-card: 1.25rem;
-  --shadow-card: 0 1px 2px rgb(0 31 86 / 0.06), 0 8px 24px -12px rgb(0 31 86 / 0.18);
-  --shadow-lift: 0 2px 4px rgb(0 31 86 / 0.06), 0 24px 48px -20px rgb(0 31 86 / 0.35);
-  --shadow-glow: 0 10px 40px -10px rgb(240 171 0 / 0.55);
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.06), 0 8px 24px -12px rgb(0 0 0 / 0.22);
+  --shadow-lift: 0 2px 4px rgb(0 0 0 / 0.06), 0 24px 48px -20px rgb(0 0 0 / 0.4);
+  --shadow-glow: 0 10px 40px -10px rgb(61 139 255 / 0.6);
 
   --animate-float: float 9s ease-in-out infinite;
   --animate-spin-slow: spin 90s linear infinite;
@@ -95,18 +96,19 @@
 
 /* Texto con degradado dorado para palabras clave */
 @utility text-gold-gradient {
-  background: linear-gradient(100deg, #fddc80 0%, #f0ab00 45%, #f8c53d 100%);
+  background: linear-gradient(100deg, #a9cdff 0%, #3d8bff 50%, #00b4ff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 /* Fondo institucional con luz desde arriba */
+/* Azul IPUC que se funde en negro */
 @utility bg-hero {
   background:
-    radial-gradient(60% 50% at 50% 0%, rgb(0 159 218 / 0.35) 0%, transparent 70%),
-    radial-gradient(40% 40% at 85% 80%, rgb(240 171 0 / 0.14) 0%, transparent 70%),
-    linear-gradient(180deg, #001f56 0%, #00338d 55%, #002a73 100%);
+    radial-gradient(55% 45% at 75% 25%, rgb(61 139 255 / 0.28) 0%, transparent 70%),
+    radial-gradient(40% 35% at 10% 85%, rgb(0 180 255 / 0.10) 0%, transparent 70%),
+    linear-gradient(180deg, #00338d 0%, #071a45 38%, #05070c 75%, #040506 100%);
 }
 
 /* Trama sutil de puntos */

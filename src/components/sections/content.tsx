@@ -322,22 +322,22 @@ export function Visit() {
             className="group relative min-h-72 overflow-hidden bg-navy-950"
           >
             <svg aria-hidden viewBox="0 0 600 500" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 h-full w-full">
-              <rect width="600" height="500" fill="#001338" />
-              <g stroke="#0d40a0" strokeWidth="14" strokeLinecap="round" opacity="0.7">
+              <rect width="600" height="500" fill="#05070c" />
+              <g stroke="#0f2a66" strokeWidth="14" strokeLinecap="round" opacity="0.7">
                 <path d="M-20 120 L 620 180" />
                 <path d="M-20 330 C 200 300, 380 380, 620 320" />
                 <path d="M140 -20 L 220 520" />
                 <path d="M420 -20 C 380 160, 460 320, 400 520" />
               </g>
-              <g stroke="#002a73" strokeWidth="6" opacity="0.9">
+              <g stroke="#0a1838" strokeWidth="6" opacity="0.9">
                 <path d="M-20 230 L 620 250" />
                 <path d="M300 -20 L 320 520" />
                 <path d="M-20 430 L 620 410" />
                 <path d="M520 -20 L 560 520" />
                 <path d="M40 -20 L 70 520" />
               </g>
-              <circle cx="310" cy="245" r="90" fill="#009fda" opacity="0.12" />
-              <circle cx="310" cy="245" r="46" fill="#009fda" opacity="0.18" />
+              <circle cx="310" cy="245" r="90" fill="#3d8bff" opacity="0.12" />
+              <circle cx="310" cy="245" r="46" fill="#3d8bff" opacity="0.2" />
             </svg>
             <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-full transition duration-300 group-hover:-translate-y-[110%]">
               <span className="grid size-16 place-items-center rounded-full rounded-br-none bg-gold-400 shadow-glow [transform:rotate(45deg)]">

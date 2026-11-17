@@ -60,8 +60,10 @@ export function SectionHeading({
       <Eyebrow light={light}>{eyebrow}</Eyebrow>
       <h2
         className={cn(
-          "mt-4 font-display text-4xl font-semibold uppercase leading-[1.05] tracking-tight sm:text-5xl",
-          light ? "text-white" : "text-navy-800",
+          "mt-4 font-display text-4xl font-light uppercase leading-[1.05] tracking-tight sm:text-5xl [&_span]:font-bold",
+          light
+            ? "text-white"
+            : "text-navy-800 [&_span]:bg-[linear-gradient(transparent_62%,var(--color-gold-300)_62%)] [&_span]:px-1 [&_span]:text-ink",
         )}
       >
         {title}

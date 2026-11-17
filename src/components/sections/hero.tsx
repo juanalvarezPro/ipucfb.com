@@ -1,45 +1,8 @@
 import { CalendarClock, ChevronDown, MapPin, PlayCircle } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/section";
+import { WelcomeVideo } from "@/components/welcome-video";
 import { church, defaultServices } from "@/config/church";
-
-/** Globo terráqueo en líneas — guiño al logo, puro SVG (sin peso de imagen). */
-function GlobeArt() {
-  const meridians = [18, 36, 54, 72];
-  const parallels = [-60, -30, 0, 30, 60];
-  return (
-    <svg viewBox="0 0 400 400" fill="none" aria-hidden className="h-full w-full">
-      <defs>
-        <radialGradient id="g-glow" cx="50%" cy="40%" r="60%">
-          <stop offset="0%" stopColor="#5ec9ef" stopOpacity="0.35" />
-          <stop offset="100%" stopColor="#001f56" stopOpacity="0" />
-        </radialGradient>
-        <linearGradient id="g-line" gradientUnits="userSpaceOnUse" x1="50" y1="50" x2="350" y2="350">
-          <stop offset="0%" stopColor="#9fdff7" />
-          <stop offset="100%" stopColor="#f8c53d" />
-        </linearGradient>
-      </defs>
-      <circle cx="200" cy="200" r="190" fill="url(#g-glow)" />
-      <g stroke="url(#g-line)" strokeOpacity="0.55" strokeWidth="1.2">
-        <circle cx="200" cy="200" r="150" />
-        {meridians.map((rx) => (
-          <ellipse key={rx} cx="200" cy="200" rx={(rx / 90) * 150} ry="150" />
-        ))}
-        <line x1="200" y1="50" x2="200" y2="350" />
-        {parallels.map((lat) => {
-          const y = 200 - Math.sin((lat * Math.PI) / 180) * 150;
-          const half = Math.cos((lat * Math.PI) / 180) * 150;
-          return <line key={lat} x1={200 - half} y1={y} x2={200 + half} y2={y} />;
-        })}
-      </g>
-      {/* Biblia abierta */}
-      <g stroke="#f8c53d" strokeWidth="2" strokeLinecap="round" opacity="0.9">
-        <path d="M60 330 C 120 300, 170 305, 200 330 C 230 305, 280 300, 340 330" />
-        <path d="M70 346 C 125 318, 170 322, 200 346 C 230 322, 275 318, 330 346" opacity="0.6" />
-      </g>
-    </svg>
-  );
-}
 
 export function Hero() {
   const main = defaultServices.find((s) => s.highlight) ?? defaultServices[0];
@@ -52,19 +15,19 @@ export function Hero() {
         className="absolute -top-40 left-1/2 -z-10 h-[38rem] w-[38rem] -translate-x-1/2 rounded-full bg-sky-400/20 blur-3xl"
       />
 
-      <Container className="grid min-h-[100svh] items-center gap-10 pb-24 pt-28 sm:pt-32 lg:grid-cols-[1.15fr_0.85fr] lg:gap-6">
-        <div className="animate-rise text-center lg:text-left">
+      <Container className="flex min-h-[100svh] flex-col items-center gap-14 pb-24 pt-28 sm:pt-32 lg:flex-row lg:justify-between lg:gap-12">
+        <div className="animate-rise text-center lg:flex-1 lg:text-left">
           <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-sky-100 backdrop-blur sm:text-sm">
             <span className="size-1.5 rounded-full bg-gold-400" />
             {church.yearTheme} ✨ 2026
           </p>
 
           <h1 className="mt-6 font-display text-[2.9rem] font-semibold uppercase leading-[0.98] tracking-tight sm:text-7xl lg:text-[5.4rem]">
-            Un Señor,
+            <span className="font-light">Un Señor,</span>
             <br />
-            <span className="text-gold-gradient">una fe,</span>
+            <span className="text-gold-gradient font-bold">una fe,</span>
             <br />
-            un bautismo
+            <span className="font-bold">un bautismo</span>
           </h1>
           <p className="mt-3 text-sm font-semibold uppercase tracking-[0.25em] text-sky-200">{church.mottoRef}</p>
 
@@ -99,14 +62,9 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="relative mx-auto hidden aspect-square w-full max-w-md sm:block lg:max-w-none">
-          <div className="absolute inset-0 animate-float">
-            <GlobeArt />
-          </div>
-          <div
-            aria-hidden
-            className="absolute inset-[4%] animate-spin-slow rounded-full border border-dashed border-sky-200/25"
-          />
+        {/* Bienvenida del pastor: donde antes estaba el globo */}
+        <div className="w-full shrink-0 lg:w-[21rem]">
+          <WelcomeVideo />
         </div>
       </Container>
 
