@@ -175,3 +175,11 @@ a:hover > .marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
+.marquee-reverse {
+  animation: marquee 32s linear infinite reverse;
+  will-change: transform;
+}
+a:hover .marquee,
+a:hover .marquee-reverse {
+  animation-play-state: paused;
+}

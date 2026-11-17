@@ -52,39 +52,76 @@ export async function LiveSection() {
   );
 }
 
-/* ── Banner REJUV 2.0 (franja de fuego que se desplaza) ───── */
+/* ── Banner REJUV 2.0: dos cintas cruzadas + sello Daniel 1:20 ── */
 
-const BANNER_LINES = ["Rejuv 2.0", "No naciste para ser tibio", "Rejuv 2.0", "¡Enciéndete!"];
+// Daniel 1:20 → «los halló diez veces mejores». Frases cortas, de parche, del momento.
+const TAPE_FIRE = ["Rejuv 2.0", "10x mejor que Daniel y sus amigos", "Modo fuego: ON", "Rejuv 2.0", "Ni tibio ni frío: ON FIRE", "Aura +1000"];
+const TAPE_DARK = ["¿Estás ready?", "No es hype, es avivamiento", "Sin miedo al éxito", "Main character: Jesús", "El parche más encendido", "Daniel 1:20"];
+
+function Tape({ lines, tone, reverse }: { lines: string[]; tone: "fire" | "dark"; reverse?: boolean }) {
+  const fire = tone === "fire";
+  return (
+    <div
+      className={
+        fire
+          ? "relative bg-gradient-to-r from-[#ff2e00] via-[#ff8a00] to-[#ff2e00] py-3 text-[#1a0500] shadow-[0_12px_40px_-10px_rgb(255_80_0/0.85)] sm:py-4"
+          : "relative border-y-2 border-[#ff8a00] bg-[#0b0306] py-2.5 text-white sm:py-3"
+      }
+    >
+      <span aria-hidden className={`${reverse ? "marquee-reverse" : "marquee"} flex w-max items-center`}>
+        {[0, 1].map((copy) => (
+          <span key={copy} className="flex shrink-0 items-center">
+            {[...lines, ...lines].map((text, i) => {
+              const brand = text === "Rejuv 2.0";
+              return (
+                <span key={i} className="flex items-center whitespace-nowrap">
+                  <span
+                    className={
+                      brand
+                        ? "px-5 font-display text-3xl font-bold uppercase tracking-tight text-white [text-shadow:0_3px_0_rgb(120_20_0/0.7)] sm:text-5xl"
+                        : fire
+                          ? "px-5 font-display text-2xl font-bold uppercase italic sm:text-4xl"
+                          : "text-fire px-5 font-display text-xl font-bold uppercase tracking-wide sm:text-3xl"
+                    }
+                  >
+                    {text}
+                  </span>
+                  {fire ? (
+                    <Flame className="size-7 shrink-0 fill-[#ffd23f] text-[#b32000] sm:size-9" />
+                  ) : (
+                    <span className="text-xl text-[#ff8a00] sm:text-2xl">✦</span>
+                  )}
+                </span>
+              );
+            })}
+          </span>
+        ))}
+      </span>
+    </div>
+  );
+}
 
 export function RejuvBanner() {
-  // Se repite el contenido para que el desplazamiento sea infinito sin saltos.
-  const items = [...BANNER_LINES, ...BANNER_LINES];
   return (
     <a
       href="#rejuv"
-      aria-label="Rejuv 2.0: no naciste para ser tibio. Ver más"
-      className="group relative block overflow-hidden bg-gradient-to-r from-[#ff3d00] via-[#ff8a00] to-[#ff3d00] py-4 text-[#1a0500] shadow-[0_10px_40px_-12px_rgb(255_90_0/0.7)] sm:py-5"
+      aria-label="Rejuv 2.0: diez veces mejor que Daniel y sus amigos (Daniel 1:20). Ver más"
+      className="group relative block overflow-hidden bg-[#0b0306] py-14 sm:py-20"
     >
-      <span aria-hidden className="absolute inset-0 bg-[radial-gradient(40%_120%_at_50%_100%,rgb(255_220_80/0.55),transparent_70%)]" />
-      <span aria-hidden className="marquee relative flex w-max items-center">
-        {[0, 1].map((copy) => (
-          <span key={copy} className="flex shrink-0 items-center">
-            {items.map((text, i) => (
-              <span key={i} className="flex items-center whitespace-nowrap">
-                <span
-                  className={
-                    text === "Rejuv 2.0"
-                      ? "px-6 font-display text-3xl font-bold uppercase tracking-tight text-white drop-shadow-[0_2px_0_rgb(120_20_0/0.6)] sm:text-4xl"
-                      : "px-6 font-display text-2xl font-semibold uppercase italic sm:text-3xl"
-                  }
-                >
-                  {text}
-                </span>
-                <Flame className="size-7 shrink-0 fill-[#ffd23f] text-[#b32000] sm:size-8" />
-              </span>
-            ))}
-          </span>
-        ))}
+      <span aria-hidden className="absolute inset-0 bg-[radial-gradient(50%_80%_at_50%_50%,rgb(255_80_0/0.35),transparent_70%)]" />
+      <div className="relative -mx-6 -rotate-3 sm:-rotate-2">
+        <Tape lines={TAPE_FIRE} tone="fire" />
+      </div>
+      <div className="relative -mx-6 mt-3 rotate-2 sm:rotate-[1.5deg]">
+        <Tape lines={TAPE_DARK} tone="dark" reverse />
+      </div>
+
+      {/* Sello central */}
+      <span className="absolute left-1/2 top-1/2 z-10 grid size-28 -translate-x-1/2 -translate-y-1/2 rotate-[-12deg] place-items-center rounded-full border-4 border-[#0b0306] bg-[#ffd23f] text-center text-[#1a0500] shadow-[0_0_0_4px_#ff8a00,0_0_40px_rgb(255_140_0/0.9)] transition duration-300 group-hover:rotate-0 group-hover:scale-110 sm:size-36">
+        <span className="leading-none">
+          <span className="block font-display text-5xl font-bold sm:text-6xl">10x</span>
+          <span className="mt-1 block text-[0.6rem] font-black uppercase tracking-[0.18em] sm:text-xs">Daniel 1:20</span>
+        </span>
       </span>
     </a>
   );
@@ -151,7 +188,7 @@ export function RejuvSection() {
           ¡Prepárate para la <span className="text-fire">Rejuv 2.0</span>!
         </h2>
         <p className="mx-auto mt-5 max-w-xl text-lg text-white/80">
-          No naciste para ser tibio. Se viene un fuego nuevo para esta generación. Vive los cultos de jóvenes cada viernes y entérate de todo
+          Dios nos llama a ser 10x mejores, como Daniel y sus amigos (Daniel 1:20). Se viene un fuego nuevo para esta generación. Vive los cultos de jóvenes cada viernes y entérate de todo
           por Instagram.
         </p>
         <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
