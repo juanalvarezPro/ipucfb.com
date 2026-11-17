@@ -345,3 +345,42 @@ export function CampTeaser() {
     </LazyMotion>
   );
 }
+
+/* ── Lema 2027 de jóvenes: aún sin elegir → incógnita animada ─ */
+
+const GLYPHS = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ#?!*%&@";
+/** Silueta fija del texto revuelto (el largo insinúa una frase de 3–4 palabras). */
+const SHAPE = "XXXXXXX XX XXXXX XXXXXXX";
+
+const scramble = () =>
+  SHAPE.split("")
+    .map((c) => (c === " " ? " " : GLYPHS[Math.floor(Math.random() * GLYPHS.length)]))
+    .join("");
+
+export function MottoTeaser() {
+  const reduce = useReducedMotion();
+  // Inicial fijo (igual en servidor y cliente); luego se revuelve en el navegador.
+  const [text, setText] = useState(SHAPE.replace(/X/g, "?"));
+
+  useEffect(() => {
+    if (reduce) return;
+    const id = window.setInterval(() => setText(scramble()), 110);
+    return () => window.clearInterval(id);
+  }, [reduce]);
+
+  return (
+    <div className="mx-auto mt-4 flex flex-col items-center gap-3" aria-label="Lema 2027 de jóvenes: muy pronto">
+      <span className="text-xs font-black uppercase tracking-[0.35em] text-white/50">Lema 2027</span>
+      <p
+        aria-hidden
+        className="select-none whitespace-pre font-display text-[clamp(1.3rem,4.4vw,3rem)] font-bold uppercase leading-none tracking-tight text-transparent blur-[2.5px] [-webkit-text-stroke:1.5px_rgb(255_255_255/0.85)]"
+      >
+        {text}
+      </p>
+      <span className="inline-flex -rotate-2 items-center gap-2 rounded-full bg-[#ffd23f] px-4 py-1 text-xs font-black uppercase tracking-[0.25em] text-[#1a0500] shadow-[0_6px_24px_-6px_rgb(255_210_63/0.7)]">
+        <span className="size-1.5 animate-pulse rounded-full bg-[#ff3d00]" />
+        Muy pronto
+      </span>
+    </div>
+  );
+}

@@ -5,7 +5,7 @@ import { IpucLogo } from "@/components/brand/logos";
 import { Container } from "@/components/ui/section";
 import { directiva } from "@/config/youth";
 import { RegistrationWizard } from "./registration-wizard";
-import { CampTeaser, Countdown, DropTitle, LeaderGrid, LockedCalendar, SpinSticker } from "./youth-motion";
+import { CampTeaser, Countdown, DropTitle, LeaderGrid, LockedCalendar, MottoTeaser, SpinSticker } from "./youth-motion";
 
 export const metadata: Metadata = {
   title: "Jóvenes · Rejuv 2.0",
@@ -100,15 +100,11 @@ export default function JovenesPage() {
             <DropTitle text="Jóvenes" />
             <SpinSticker
               text="REJUV 2.0 • FULL FUEGO • 2027 • REJUV 2.0 • "
-              className="absolute -right-1 -top-20 size-20 sm:-top-6 sm:right-4 sm:size-32 lg:right-16 lg:size-40"
+              className="absolute -bottom-8 -right-1 size-16 sm:-top-6 sm:bottom-auto sm:right-4 sm:size-32 lg:right-16 lg:size-40"
             />
           </div>
 
-          <p
-            className="mx-auto mt-3 font-display text-[clamp(1.4rem,4.5vw,3rem)] font-bold uppercase leading-none tracking-tight text-transparent [-webkit-text-stroke:1.5px_rgb(255_255_255/0.85)]"
-          >
-            Una generación encendida
-          </p>
+          <MottoTeaser />
 
           <figure className="mx-auto mt-10 max-w-2xl rotate-1 rounded-3xl border border-white/10 bg-white/[0.04] px-6 py-5 backdrop-blur">
             <blockquote className="text-lg leading-snug text-white/85 sm:text-xl">
