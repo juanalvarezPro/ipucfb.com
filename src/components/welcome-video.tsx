@@ -101,7 +101,7 @@ export function HeroVideoStage({ children }: { children: ReactNode }) {
         </div>
 
         {/* Subtítulos del guion, sobre la parte que ya se fundió al fondo */}
-        <div className="absolute inset-x-6 bottom-6 sm:inset-x-8 lg:bottom-20 lg:left-auto lg:right-[max(2rem,calc((100vw-72rem)/2+2rem))] lg:w-[22rem]">
+        <div className="absolute inset-x-6 bottom-6 sm:inset-x-8 lg:bottom-[11vh] lg:left-auto lg:right-[max(2rem,calc((100vw-72rem)/2+2rem))] lg:w-[22rem]">
           <p
             key={line}
             aria-live="polite"
