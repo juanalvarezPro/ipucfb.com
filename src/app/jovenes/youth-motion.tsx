@@ -159,3 +159,94 @@ export function LeaderGrid({ leaders }: { leaders: Leader[] }) {
     </LazyMotion>
   );
 }
+
+/* ── Calendario 2027 con candados ──────────────────────────── */
+
+const MONTHS = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
+/** Texto de relleno que se ve borroso: insinúa que hay algo, sin revelarlo. */
+const TEASERS = [
+  "Noche de lanzamiento",
+  "Retiro de jóvenes",
+  "Torneo relámpago",
+  "Vigilia de fuego",
+  "Salida sorpresa",
+  "Campamento 2027",
+  "Concierto Rejuv",
+  "Noche de talentos",
+  "Aniversario",
+  "Congreso juvenil",
+  "Evangelismo",
+  "Cierre de año",
+];
+
+function Padlock({ shake }: { shake: boolean }) {
+  return (
+    <m.svg
+      viewBox="0 0 48 56"
+      className="h-14 w-12 drop-shadow-[0_6px_18px_rgb(255_120_0/0.6)]"
+      animate={shake ? { rotate: [0, -14, 12, -8, 6, 0], y: [0, -3, 0] } : { rotate: 0 }}
+      transition={{ duration: 0.6 }}
+      aria-hidden
+    >
+      <defs>
+        <linearGradient id="lock-body" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#ffd23f" />
+          <stop offset="100%" stopColor="#ff5e00" />
+        </linearGradient>
+      </defs>
+      <path d="M12 24v-8a12 12 0 0 1 24 0v8" fill="none" stroke="#ffd23f" strokeWidth="5" strokeLinecap="round" />
+      <rect x="4" y="22" width="40" height="32" rx="8" fill="url(#lock-body)" />
+      <circle cx="24" cy="36" r="4.5" fill="#1a0500" />
+      <rect x="22" y="38" width="4" height="9" rx="2" fill="#1a0500" />
+    </m.svg>
+  );
+}
+
+function LockedMonth({ month, teaser, index }: { month: string; teaser: string; index: number }) {
+  const [shake, setShake] = useState(false);
+  const reduce = useReducedMotion();
+  return (
+    <m.li
+      initial={reduce ? false : { opacity: 0, y: 30, rotate: index % 2 ? 2 : -2 }}
+      whileInView={{ opacity: 1, y: 0, rotate: index % 2 ? 0.8 : -0.8 }}
+      whileHover={{ rotate: 0, scale: 1.04 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ type: "spring", stiffness: 200, damping: 18, delay: (index % 4) * 0.06 }}
+      onHoverStart={() => setShake(true)}
+      onHoverEnd={() => setShake(false)}
+      onTap={() => {
+        setShake(false);
+        requestAnimationFrame(() => setShake(true));
+      }}
+      className="group relative flex cursor-not-allowed flex-col items-center overflow-hidden rounded-[1.6rem] border border-white/10 bg-white/[0.04] px-4 pb-5 pt-4 text-center"
+      aria-label={`${month} 2027: bloqueado, se revela pronto`}
+    >
+      {/* Tira de calendario */}
+      <span className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-[#ff3d00] via-[#ff8a00] to-[#ffd23f]" aria-hidden />
+      <span className="mt-2 font-display text-3xl font-bold uppercase tracking-wide text-white">{month}</span>
+      <span className="text-[0.65rem] font-black uppercase tracking-[0.3em] text-white/40">2027</span>
+      <div className="my-4">
+        <Padlock shake={shake} />
+      </div>
+      <span aria-hidden className="select-none font-display text-lg uppercase text-white/80 blur-[6px]">
+        {teaser}
+      </span>
+      <span className="mt-3 rounded-full border border-[#ff8a00]/40 bg-[#ff5e00]/10 px-3 py-1 text-[0.65rem] font-black uppercase tracking-[0.2em] text-[#ffb347]">
+        Se revela pronto
+      </span>
+      <span aria-hidden className="pointer-events-none absolute -bottom-12 left-1/2 size-28 -translate-x-1/2 rounded-full bg-[#ff5e00]/0 blur-2xl transition duration-500 group-hover:bg-[#ff5e00]/35" />
+    </m.li>
+  );
+}
+
+export function LockedCalendar() {
+  return (
+    <LazyMotion features={domAnimation}>
+      <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+        {MONTHS.map((month, i) => (
+          <LockedMonth key={month} month={month} teaser={TEASERS[i]} index={i} />
+        ))}
+      </ul>
+    </LazyMotion>
+  );
+}

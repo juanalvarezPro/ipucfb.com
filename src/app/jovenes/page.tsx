@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, Flame } from "lucide-react";
+import { ArrowLeft, Flame, Lock } from "lucide-react";
 import { IpucLogo } from "@/components/brand/logos";
 import { Container } from "@/components/ui/section";
 import { directiva } from "@/config/youth";
 import { RegistrationWizard } from "./registration-wizard";
-import { Countdown, DropTitle, LeaderGrid, SpinSticker } from "./youth-motion";
+import { Countdown, DropTitle, LeaderGrid, LockedCalendar, SpinSticker } from "./youth-motion";
 
 export const metadata: Metadata = {
   title: "Jóvenes · Rejuv 2.0",
@@ -156,6 +156,35 @@ export default function JovenesPage() {
             </p>
           </div>
           <LeaderGrid leaders={directiva} />
+        </Container>
+      </section>
+
+      {/* ── Calendario bloqueado ────────────────────────────── */}
+      <section id="calendario" className="relative overflow-hidden py-20 sm:py-28">
+        <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(50%_40%_at_50%_0%,rgb(255_94_0/0.18),transparent_70%)]" />
+        <Container>
+          <div className="mx-auto mb-12 max-w-2xl text-center">
+            <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.3em] text-[#ffb347]">
+              <Lock className="size-4" aria-hidden /> Calendario 2027
+            </p>
+            <h2 className="mt-3 font-display text-5xl font-bold uppercase leading-[0.9] sm:text-7xl">
+              Estamos preparando <span className="text-fire">todo…</span>
+            </h2>
+            <p className="mt-4 text-xl font-semibold text-white/85">No te lo puedes perder. 🔥</p>
+            <p className="mt-2 text-white/60">
+              Cada mes trae algo nuevo. Los candados se abren poco a poco desde el 1 de enero.
+            </p>
+          </div>
+          <LockedCalendar />
+          <div className="mt-12 text-center">
+            <a
+              href="#inscripcion"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 font-bold text-[#1a0500] transition hover:scale-105 active:scale-95"
+            >
+              <Flame className="size-5 fill-[#ffd23f] text-[#ff3d00]" aria-hidden />
+              Inscríbete y entérate primero
+            </a>
+          </div>
         </Container>
       </section>
 
