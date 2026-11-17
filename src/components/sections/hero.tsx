@@ -1,7 +1,7 @@
 import { CalendarClock, ChevronDown, MapPin, PlayCircle } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/section";
-import { WelcomeVideo } from "@/components/welcome-video";
+import { HeroVideoStage } from "@/components/welcome-video";
 import { church, defaultServices } from "@/config/church";
 
 export function Hero() {
@@ -15,11 +15,12 @@ export function Hero() {
         className="absolute -top-40 left-1/2 -z-10 h-[38rem] w-[38rem] -translate-x-1/2 rounded-full bg-sky-400/20 blur-3xl"
       />
 
-      <Container className="flex min-h-[100svh] flex-col items-center gap-14 pb-24 pt-28 sm:pt-32 lg:flex-row lg:justify-between lg:gap-12">
-        <div className="animate-rise text-center lg:flex-1 lg:text-left">
+      <Container className="flex min-h-[100svh] flex-col justify-center pb-24 pt-28 sm:pt-32">
+        <HeroVideoStage>
+        <div className="animate-rise text-center lg:max-w-[46%] lg:text-left">
           <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-sky-100 backdrop-blur sm:text-sm">
             <span className="size-1.5 rounded-full bg-gold-400" />
-            {church.yearTheme} ✨ 2026
+            {church.yearTheme} ✨ {church.yearThemeYear}
           </p>
 
           <h1 className="mt-6 font-display text-[2.9rem] font-semibold uppercase leading-[0.98] tracking-tight sm:text-7xl lg:text-[5.4rem]">
@@ -62,10 +63,7 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Bienvenida del pastor: donde antes estaba el globo */}
-        <div className="w-full shrink-0 lg:w-[21rem]">
-          <WelcomeVideo />
-        </div>
+        </HeroVideoStage>
       </Container>
 
       <a

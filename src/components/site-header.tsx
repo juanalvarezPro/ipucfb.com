@@ -45,10 +45,7 @@ export function SiteHeader() {
         <Link href="#inicio" className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <IpucLogo tone="white" priority className="h-10 w-auto shrink-0 sm:h-12" />
           <span className="hidden flex-col whitespace-nowrap leading-none text-white sm:flex">
-            <span className="font-display text-lg font-semibold uppercase tracking-wide">{church.shortName}</span>
-            <span className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-sky-200 lg:hidden xl:inline">
-              {church.motto}
-            </span>
+            <span className="font-display text-xl font-bold uppercase tracking-wider">{church.brand}</span>
           </span>
         </Link>
 

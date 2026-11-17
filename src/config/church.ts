@@ -4,7 +4,9 @@
  * los reales (nombre, dirección, horarios, pastores, redes).
  */
 export const church = {
-  /** Nombre corto que se ve en el header */
+  /** Marca que se ve junto al logo en el header */
+  brand: "IPUCFB",
+  /** Nombre corto (título de la pestaña, SEO) */
   shortName: "IPUC Ferrería Bariloche",
   /** Nombre completo de la congregación */
   name: "Iglesia Pentecostal Unida de Colombia · Ferrería Bariloche",
@@ -14,6 +16,7 @@ export const church = {
   /** Lema del año (bio de Instagram) */
   yearTheme: "Levántate y resplandece",
   yearThemeRef: "Isaías 60:1",
+  yearThemeYear: 2027,
   pastors: "Pastor Anderson Pabón",
   pastorInstagram: "https://www.instagram.com/andersonpabon/",
   address: {
