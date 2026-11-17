@@ -46,14 +46,9 @@ export const directiva: Leader[] = [
     bio: "Contador de profesión y alegría en persona. Cuida con fidelidad cada recurso del grupo, siempre con una sonrisa.",
   },
   {
-    role: "Vocal",
+    role: "Vocal · Asesor",
     name: "Cristian García",
     bio: "Músico e ingeniero. Ama predicarle a las almas y contar historias de su trabajo: siempre tiene un testimonio que te deja pensando.",
-  },
-  {
-    role: "Asesor",
-    name: "Cristian García",
-    bio: "Músico e ingeniero con pasión por las almas. Acompaña a la directiva con la Palabra, la oración y las historias que Dios le ha dado en su trabajo.",
   },
   {
     role: "Auxiliar en formación",
