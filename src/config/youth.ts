@@ -27,7 +27,7 @@ export const directiva: Leader[] = [
   {
     role: "Sublíder",
     name: "Jhon Jaramillo",
-    photo: `${R2}/jhon.webp`,
+    photo: `${R2}/jhon-v2.webp`,
     instagram: "jhonjaramillostorycraft",
     bio: "Realizador audiovisual y director creativo. «Orando por ideas con propósito»: convierte historias en imágenes que apuntan a Cristo.",
   },
