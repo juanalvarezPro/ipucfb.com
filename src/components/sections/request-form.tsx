@@ -1,48 +1,64 @@
 "use client";
 
-import { startTransition, useActionState, useState, type FormEvent } from "react";
-import { CheckCircle2, HandHeart, Loader2, MapPin, MessageCircle, Send } from "lucide-react";
-import { submitRequest, type FormState } from "@/app/actions";
+import { useState, type FormEvent } from "react";
+import { CheckCircle2, HandHeart, MapPin, MessageCircle, Send } from "lucide-react";
+import { pastorWhatsappLink } from "@/config/church";
 import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/button";
 
 const KINDS = [
-  { value: "PRAYER", label: "Oración", icon: HandHeart, placeholder: "¿Por qué podemos orar contigo?" },
-  { value: "VISIT", label: "Visitarnos", icon: MapPin, placeholder: "¿Qué día te gustaría venir? ¿Vienes con familia?" },
-  { value: "CONTACT", label: "Mensaje", icon: MessageCircle, placeholder: "Escribe tu mensaje" },
+  { value: "PRAYER", label: "Oración", icon: HandHeart, intro: "🙏 Petición de oración", placeholder: "¿Por qué podemos orar contigo?" },
+  { value: "VISIT", label: "Visitarnos", icon: MapPin, intro: "📍 Quiero visitar la iglesia", placeholder: "¿Qué día te gustaría venir? ¿Vienes con familia?" },
+  { value: "CONTACT", label: "Mensaje", icon: MessageCircle, intro: "💬 Mensaje desde ipucfb.com", placeholder: "Escribe tu mensaje" },
 ] as const;
-
-const initial: FormState = { status: "idle" };
 
 const field =
   "w-full rounded-xl border border-line bg-white px-4 py-3 text-base text-ink placeholder:text-muted/70 shadow-sm transition focus:border-sky-500 focus:outline-none focus:ring-4 focus:ring-sky-500/15";
 
+/**
+ * Formulario de oración / visita / mensaje. No pasa por ningún servidor:
+ * arma el texto y abre el chat de WhatsApp del pastor (wa.me) para que la
+ * persona lo envíe desde su propio WhatsApp.
+ */
 export function RequestForm() {
-  const [state, action, pending] = useActionState(submitRequest, initial);
   const [kind, setKind] = useState<(typeof KINDS)[number]["value"]>("PRAYER");
-  const [values, setValues] = useState({ name: "", phone: "", message: "" });
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [sent, setSent] = useState(false);
   const active = KINDS.find((k) => k.value === kind)!;
-  const bind = (key: keyof typeof values) => ({
-    name: key,
-    value: values[key],
-    onChange: (e: { target: { value: string } }) => setValues((v) => ({ ...v, [key]: e.target.value })),
-  });
 
-  // Campos controlados + onSubmit: si hay un error, lo escrito no se pierde.
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    startTransition(() => action(data));
+    if (name.trim().length < 2) return setError("Escribe tu nombre");
+    if (kind !== "VISIT" && message.trim().length < 3) return setError("Escribe tu mensaje");
+    setError(null);
+    const text = [
+      active.intro,
+      `Hola pastor, soy *${name.trim()}*.`,
+      message.trim() ? `\n${message.trim()}` : "",
+      "\n— Enviado desde ipucfb.com",
+    ]
+      .filter(Boolean)
+      .join("\n");
+    // Abrir en el mismo gesto del usuario para que el navegador no lo bloquee.
+    window.open(pastorWhatsappLink(text), "_blank", "noopener,noreferrer");
+    setSent(true);
   };
 
-  if (state.status === "ok") {
+  if (sent) {
     return (
       <div role="status" className="flex flex-col items-center gap-4 py-10 text-center">
         <span className="grid size-16 place-items-center rounded-full bg-sky-50 text-sky-600">
           <CheckCircle2 className="size-9" aria-hidden />
         </span>
         <p className="font-display text-2xl font-semibold uppercase text-navy-800">¡Dios te bendiga!</p>
-        <p className="max-w-sm text-muted">{state.message ?? "Recibimos tu mensaje."}</p>
+        <p className="max-w-sm text-muted">
+          Abrimos el WhatsApp del pastor con tu mensaje listo. Solo dale <strong>enviar</strong> allá.
+        </p>
+        <button type="button" onClick={() => setSent(false)} className="text-sm font-semibold text-sky-600 underline">
+          Escribir otro mensaje
+        </button>
       </div>
     );
   }
@@ -75,50 +91,41 @@ export function RequestForm() {
         </div>
       </fieldset>
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        <label className="block">
-          <span className="mb-1.5 block text-sm font-semibold text-navy-800">Nombre</span>
-          <input {...bind("name")} required autoComplete="name" placeholder="Tu nombre" className={field} />
-        </label>
-        <label className="block">
-          <span className="mb-1.5 block text-sm font-semibold text-navy-800">WhatsApp</span>
-          <input
-            {...bind("phone")}
-            required
-            type="tel"
-            inputMode="tel"
-            autoComplete="tel"
-            placeholder="300 123 4567"
-            className={field}
-          />
-        </label>
-      </div>
+      <label className="block">
+        <span className="mb-1.5 block text-sm font-semibold text-navy-800">Nombre</span>
+        <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+          autoComplete="name"
+          placeholder="Tu nombre"
+          className={field}
+        />
+      </label>
 
       <label className="block">
         <span className="mb-1.5 block text-sm font-semibold text-navy-800">Mensaje</span>
-        <textarea {...bind("message")} rows={4} placeholder={active.placeholder} className={cn(field, "resize-y")} />
+        <textarea
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          rows={4}
+          placeholder={active.placeholder}
+          className={cn(field, "resize-y")}
+        />
       </label>
 
-      {/* Campo trampa anti-bots */}
-      <div aria-hidden className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
-        <label>
-          No llenar
-          <input name="website" tabIndex={-1} autoComplete="off" />
-        </label>
-      </div>
-
-      {state.status === "error" && (
+      {error && (
         <p role="alert" className="rounded-xl bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
-          {state.message}
+          {error}
         </p>
       )}
 
-      <Button type="submit" variant="navy" size="lg" className="w-full" disabled={pending}>
-        {pending ? <Loader2 className="size-5 animate-spin" aria-hidden /> : <Send className="size-5" aria-hidden />}
-        {pending ? "Enviando…" : "Enviar"}
+      <Button type="submit" variant="navy" size="lg" className="w-full">
+        <Send className="size-5" aria-hidden />
+        Enviar por WhatsApp al pastor
       </Button>
       <p className="text-center text-xs text-muted">
-        Te responderemos por WhatsApp. Tu petición es confidencial y solo la ve el equipo pastoral.
+        Se abre WhatsApp con tu mensaje listo para el pastor. Nadie más lo ve.
       </p>
     </form>
   );

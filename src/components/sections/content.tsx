@@ -78,7 +78,7 @@ export function Schedule({ services }: { services: ServiceItem[] }) {
           }
           lead="Llega unos minutos antes: siempre habrá alguien en la puerta para darte la bienvenida."
         />
-        <ul className="mt-14 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <ul className="mt-14 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {services.map((s) => (
             <li
               key={`${s.day}-${s.title}`}
@@ -284,7 +284,7 @@ export function Visit() {
                   <Clock className="mt-0.5 size-6 shrink-0 text-gold-300" aria-hidden />
                   <span>
                     <span className="block font-semibold">Miércoles y viernes · 7:00 p. m.</span>
-                    <span className="text-navy-100/80">Domingo · 10:00 a. m.</span>
+                    <span className="text-navy-100/80">Domingo · 10:00 a. m. y 5:00 p. m.</span>
                   </span>
                 </li>
                 <li className="flex gap-4">

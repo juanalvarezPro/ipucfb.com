@@ -223,8 +223,8 @@ export function RejuvSection() {
             <Instagram className="size-5" aria-hidden />
             Síguenos en Instagram
           </ButtonLink>
-          <ButtonLink href="#horarios" variant="outline" size="lg">
-            Viernes · 7:00 p. m.
+          <ButtonLink href="/jovenes" variant="outline" size="lg">
+            Inscríbete en Jóvenes →
           </ButtonLink>
         </div>
       </Container>

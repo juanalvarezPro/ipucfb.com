@@ -13,7 +13,7 @@ const NAV = [
   { href: "#en-vivo", label: "En vivo" },
   { href: "#horarios", label: "Horarios" },
   { href: "#creemos", label: "Lo que creemos" },
-  { href: "#ministerios", label: "Ministerios" },
+  { href: "/jovenes", label: "Jóvenes 🔥" },
   { href: "#visitanos", label: "Visítanos" },
 ];
 

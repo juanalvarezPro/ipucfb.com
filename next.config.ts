@@ -23,6 +23,13 @@ const nextConfig: NextConfig = {
   // www.ipucfb.com → ipucfb.com (una sola URL para Google y para compartir)
   async redirects() {
     return [
+      // Subdominio «falso»: jovenes.ipucfb.com → ipucfb.com/jovenes
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "jovenes.ipucfb.com" }],
+        destination: "https://ipucfb.com/jovenes",
+        permanent: false,
+      },
       {
         source: "/:path*",
         has: [{ type: "host", value: "www.ipucfb.com" }],

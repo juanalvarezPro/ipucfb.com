@@ -1,11 +1,11 @@
-import { CalendarClock, ChevronDown, MapPin, PlayCircle } from "lucide-react";
+import { ChevronDown, MapPin, PlayCircle } from "lucide-react";
+import { NextService } from "@/components/next-service";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/section";
 import { HeroVideoStage } from "@/components/welcome-video";
-import { church, defaultServices } from "@/config/church";
+import { church } from "@/config/church";
 
 export function Hero() {
-  const main = defaultServices.find((s) => s.highlight) ?? defaultServices[0];
   return (
     <section id="inicio" className="relative isolate overflow-hidden bg-hero text-white">
       <div aria-hidden className="absolute inset-0 -z-10 bg-dots opacity-60 [mask-image:radial-gradient(70%_60%_at_50%_30%,black,transparent)]" />
@@ -48,19 +48,7 @@ export function Hero() {
             </ButtonLink>
           </div>
 
-          <div className="mx-auto mt-10 inline-flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.06] px-5 py-4 text-left backdrop-blur lg:mx-0 lg:mt-[3.6vh] lg:py-[1.4vh]">
-            <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-gold-400/15 text-gold-300">
-              <CalendarClock className="size-6" aria-hidden />
-            </span>
-            <span>
-              <span className="block text-xs font-semibold uppercase tracking-[0.18em] text-sky-200">
-                {main.title}
-              </span>
-              <span className="block font-display text-xl uppercase tracking-wide">
-                {main.day} · {main.time}
-              </span>
-            </span>
-          </div>
+          <NextService />
         </div>
 
         </HeroVideoStage>

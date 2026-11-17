@@ -49,14 +49,25 @@ export type ServiceItem = {
   time: string;
   note?: string;
   highlight?: boolean;
+  /** 0 = domingo … 6 = sábado (para calcular el próximo culto) */
+  dow?: number;
+  /** Hora de inicio en minutos desde la medianoche (hora de Colombia) */
+  start?: number;
 };
 
 /** Horarios de la semana (se usan si la base de datos aún no tiene cultos). */
 export const defaultServices: ServiceItem[] = [
-  { day: "Miércoles", title: "Culto de Enseñanza", time: "7:00 p. m.", note: "Estudio de la Palabra" },
-  { day: "Viernes", title: "Culto de Jóvenes", time: "7:00 p. m.", note: "Juventud encendida" },
-  { day: "Domingo", title: "Escuela Dominical", time: "10:00 a. m.", note: "Para toda la familia", highlight: true },
+  { day: "Miércoles", dow: 3, start: 19 * 60, title: "Culto de Enseñanza", time: "7:00 p. m.", note: "Estudio de la Palabra" },
+  { day: "Viernes", dow: 5, start: 19 * 60, title: "Culto de Jóvenes", time: "7:00 p. m.", note: "Juventud encendida" },
+  { day: "Domingo", dow: 0, start: 10 * 60, title: "Escuela Dominical", time: "10:00 a. m.", note: "Para toda la familia", highlight: true },
+  { day: "Domingo", dow: 0, start: 17 * 60, title: "Culto de Salvación", time: "5:00 p. m.", note: "Ven con tu familia y amigos" },
 ];
+
+/** WhatsApp del pastor: ahí llegan las peticiones del formulario (wa.me, sin API). */
+export const pastorWhatsapp = "573163346480";
+
+export const pastorWhatsappLink = (text: string) =>
+  `https://wa.me/${pastorWhatsapp}?text=${encodeURIComponent(text)}`;
 
 export const whatsappLink = (text = "¡Hola! Quisiera más información sobre la iglesia 🙏") =>
   `https://wa.me/${church.whatsapp}?text=${encodeURIComponent(text)}`;
