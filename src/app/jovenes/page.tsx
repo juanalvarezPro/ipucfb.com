@@ -5,7 +5,7 @@ import { IpucLogo } from "@/components/brand/logos";
 import { Container } from "@/components/ui/section";
 import { directiva } from "@/config/youth";
 import { RegistrationWizard } from "./registration-wizard";
-import { Countdown, DropTitle, LeaderGrid, LockedCalendar, SpinSticker } from "./youth-motion";
+import { CampTeaser, Countdown, DropTitle, LeaderGrid, LockedCalendar, SpinSticker } from "./youth-motion";
 
 export const metadata: Metadata = {
   title: "Jóvenes · Rejuv 2.0",
@@ -175,6 +175,7 @@ export default function JovenesPage() {
               Cada mes trae algo nuevo. Los candados se abren poco a poco desde el 1 de enero.
             </p>
           </div>
+          <CampTeaser />
           <LockedCalendar />
           <div className="mt-12 text-center">
             <a

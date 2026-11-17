@@ -170,7 +170,7 @@ const TEASERS = [
   "Torneo relámpago",
   "Vigilia de fuego",
   "Salida sorpresa",
-  "Campamento 2027",
+  "Noche de alabanza",
   "Concierto Rejuv",
   "Noche de talentos",
   "Aniversario",
@@ -247,6 +247,81 @@ export function LockedCalendar() {
           <LockedMonth key={month} month={month} teaser={TEASERS[i]} index={i} />
         ))}
       </ul>
+    </LazyMotion>
+  );
+}
+
+/* ── Campamento 2027: el evento que sí se deja ver ─────────── */
+
+function LockedChip({ label }: { label: string }) {
+  return (
+    <span className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/30 px-4 py-3">
+      <svg viewBox="0 0 48 56" className="h-7 w-6 shrink-0" aria-hidden>
+        <path d="M12 24v-8a12 12 0 0 1 24 0v8" fill="none" stroke="#ffd23f" strokeWidth="5" strokeLinecap="round" />
+        <rect x="4" y="22" width="40" height="32" rx="8" fill="#ff8a00" />
+        <circle cx="24" cy="37" r="4.5" fill="#1a0500" />
+      </svg>
+      <span className="text-left">
+        <span className="block text-[0.65rem] font-black uppercase tracking-[0.22em] text-[#ffb347]">{label}</span>
+        <span aria-hidden className="block select-none font-display text-lg uppercase text-white/80 blur-[5px]">
+          Muy pronto
+        </span>
+        <span className="sr-only">Bloqueado: se revela pronto</span>
+      </span>
+    </span>
+  );
+}
+
+export function CampTeaser() {
+  const reduce = useReducedMotion();
+  return (
+    <LazyMotion features={domAnimation}>
+      <m.div
+        initial={reduce ? false : { opacity: 0, y: 40, rotate: -1.5 }}
+        whileInView={{ opacity: 1, y: 0, rotate: -0.6 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ type: "spring", stiffness: 140, damping: 18 }}
+        className="relative mb-12 overflow-hidden rounded-[2.2rem] border border-[#ff8a00]/50 bg-[linear-gradient(135deg,#2a0a02_0%,#0b0306_55%,#1f0802_100%)] p-6 shadow-[0_30px_90px_-30px_rgb(255_80_0/0.8)] sm:p-10"
+      >
+        {/* Fogata */}
+        <div aria-hidden className="pointer-events-none absolute -bottom-10 right-4 h-56 w-56 sm:right-16 sm:h-72 sm:w-72">
+          {[0, 1, 2].map((i) => (
+            <span
+              key={i}
+              className="flame absolute bottom-0 left-1/2 rounded-full"
+              style={{ width: `${9 - i * 2}rem`, height: `${9 - i * 2}rem`, animationDelay: `${i * 0.5}s`, animationDuration: `${2.4 + i * 0.4}s` }}
+            />
+          ))}
+        </div>
+        <span aria-hidden className="absolute -right-6 top-6 rotate-12 rounded-md bg-[#ffd23f] px-10 py-1 text-xs font-black uppercase tracking-[0.3em] text-[#1a0500] sm:right-10">
+          Muy pronto
+        </span>
+
+        <div className="relative max-w-xl">
+          <p className="text-sm font-black uppercase tracking-[0.3em] text-[#ffb347]">⛺ Se viene…</p>
+          <h3 className="mt-2 font-display text-[clamp(3rem,10vw,6.5rem)] font-bold uppercase leading-[0.85]">
+            <span className="text-fire">Campa</span>
+            <span className="text-fire">mento</span>
+            <span className="block text-white">2027</span>
+          </h3>
+          <p className="mt-4 text-lg text-white/80">
+            Fogata, alabanza, aventura y un encuentro con Dios que no vas a olvidar. Los detalles todavía están
+            bajo candado… pero tu cupo empieza con tu inscripción.
+          </p>
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            <LockedChip label="Fecha" />
+            <LockedChip label="Lugar" />
+            <LockedChip label="Inversión" />
+          </div>
+          <a
+            href="#inscripcion"
+            className="mt-7 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#ff3d00] to-[#ffb000] px-7 py-4 font-bold text-[#1a0500] shadow-[0_10px_40px_-10px_rgb(255_94_0/0.9)] transition hover:scale-105 active:scale-95"
+          >
+            <Flame className="size-5 fill-[#ffd23f] text-[#b32000]" aria-hidden />
+            Quiero ir al campamento
+          </a>
+        </div>
+      </m.div>
     </LazyMotion>
   );
 }
