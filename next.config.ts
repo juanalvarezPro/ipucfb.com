@@ -20,6 +20,17 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  // www.ipucfb.com → ipucfb.com (una sola URL para Google y para compartir)
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.ipucfb.com" }],
+        destination: "https://ipucfb.com/:path*",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
