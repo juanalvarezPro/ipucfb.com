@@ -1,7 +1,6 @@
-import { readFile } from "node:fs/promises";
-import path from "node:path";
 import { ImageResponse } from "next/og";
 import { church } from "@/config/church";
+import { OG_LOGO } from "./og-logo";
 
 export const alt = church.motto;
 export const size = { width: 1200, height: 630 };
@@ -9,8 +8,7 @@ export const contentType = "image/png";
 
 // Satori no pinta WebP: el logo va en PNG.
 export default async function OpengraphImage() {
-  const logo = await readFile(path.join(process.cwd(), "public/brand/ipuc-logo-white.png"));
-  const src = `data:image/png;base64,${logo.toString("base64")}`;
+  const src = OG_LOGO;
   return new ImageResponse(
     (
       <div
@@ -30,7 +28,7 @@ export default async function OpengraphImage() {
           {church.motto}
         </div>
         <div style={{ marginTop: 12, fontSize: 28, color: "#f8c53d", letterSpacing: 6, textTransform: "uppercase" }}>
-          {church.mottoRef} · {church.domain}
+          {`${church.mottoRef} · ${church.domain}`}
         </div>
       </div>
     ),
