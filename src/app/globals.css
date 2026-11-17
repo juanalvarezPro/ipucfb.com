@@ -162,3 +162,16 @@
   filter: blur(2px) drop-shadow(0 0 30px rgb(255 110 0 / 0.7));
   animation: spin 6s linear infinite;
 }
+
+/* Franja REJUV: desplazamiento infinito (el contenido va duplicado) */
+.marquee {
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+}
+a:hover > .marquee {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}

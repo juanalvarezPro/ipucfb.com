@@ -30,7 +30,7 @@ const PILLARS = [
 
 export function About() {
   return (
-    <Section id="nosotros">
+    <Section id="nosotros" tone="white">
       <SectionHeading
         eyebrow="Quiénes somos"
         title={

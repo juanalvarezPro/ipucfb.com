@@ -1,6 +1,6 @@
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { LiveSection, RejuvSection } from "@/components/sections/live-and-rejuv";
+import { LiveSection, RejuvBanner, RejuvSection } from "@/components/sections/live-and-rejuv";
 import { Hero } from "@/components/sections/hero";
 import { About, Beliefs, Ministries, PrayerSection, Schedule, VerseBanner, Visit } from "@/components/sections/content";
 import { church, siteUrl } from "@/config/church";
@@ -36,8 +36,9 @@ export default async function Home() {
       <SiteHeader />
       <main>
         <Hero />
-        <About />
         <LiveSection />
+        <RejuvBanner />
+        <About />
         <Schedule services={services} />
         <RejuvSection />
         <Beliefs />

@@ -11,7 +11,7 @@ import { getLatestStream } from "@/lib/youtube";
 export async function LiveSection() {
   const stream = await getLatestStream();
   return (
-    <Section id="en-vivo" tone="white">
+    <Section id="en-vivo" className="!pt-8 sm:!pt-12">
       <div className="grid items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
         <div>
           <SectionHeading
@@ -31,6 +31,7 @@ export async function LiveSection() {
             </ButtonLink>
           </div>
         </div>
+        <div className="order-first lg:order-last">
         {stream ? (
           <LiteYouTube id={stream.id} title={stream.title} />
         ) : (
@@ -45,8 +46,47 @@ export async function LiveSection() {
             </span>
           </a>
         )}
+        </div>
       </div>
     </Section>
+  );
+}
+
+/* ── Banner REJUV 2.0 (franja de fuego que se desplaza) ───── */
+
+const BANNER_LINES = ["Rejuv 2.0", "No naciste para ser tibio", "Rejuv 2.0", "¡Enciéndete!"];
+
+export function RejuvBanner() {
+  // Se repite el contenido para que el desplazamiento sea infinito sin saltos.
+  const items = [...BANNER_LINES, ...BANNER_LINES];
+  return (
+    <a
+      href="#rejuv"
+      aria-label="Rejuv 2.0: no naciste para ser tibio. Ver más"
+      className="group relative block overflow-hidden bg-gradient-to-r from-[#ff3d00] via-[#ff8a00] to-[#ff3d00] py-4 text-[#1a0500] shadow-[0_10px_40px_-12px_rgb(255_90_0/0.7)] sm:py-5"
+    >
+      <span aria-hidden className="absolute inset-0 bg-[radial-gradient(40%_120%_at_50%_100%,rgb(255_220_80/0.55),transparent_70%)]" />
+      <span aria-hidden className="marquee relative flex w-max items-center">
+        {[0, 1].map((copy) => (
+          <span key={copy} className="flex shrink-0 items-center">
+            {items.map((text, i) => (
+              <span key={i} className="flex items-center whitespace-nowrap">
+                <span
+                  className={
+                    text === "Rejuv 2.0"
+                      ? "px-6 font-display text-3xl font-bold uppercase tracking-tight text-white drop-shadow-[0_2px_0_rgb(120_20_0/0.6)] sm:text-4xl"
+                      : "px-6 font-display text-2xl font-semibold uppercase italic sm:text-3xl"
+                  }
+                >
+                  {text}
+                </span>
+                <Flame className="size-7 shrink-0 fill-[#ffd23f] text-[#b32000] sm:size-8" />
+              </span>
+            ))}
+          </span>
+        ))}
+      </span>
+    </a>
   );
 }
 
@@ -111,7 +151,7 @@ export function RejuvSection() {
           ¡Prepárate para la <span className="text-fire">Rejuv 2.0</span>!
         </h2>
         <p className="mx-auto mt-5 max-w-xl text-lg text-white/80">
-          Se viene un fuego nuevo para esta generación. Vive los cultos de jóvenes cada viernes y entérate de todo
+          No naciste para ser tibio. Se viene un fuego nuevo para esta generación. Vive los cultos de jóvenes cada viernes y entérate de todo
           por Instagram.
         </p>
         <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
