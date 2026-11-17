@@ -1,0 +1,71 @@
+// Base de datos de ipucfb.com — Postgres en Neon.
+// DATABASE_URL = conexión pooled (la usa la app); DIRECT_URL = directa (migraciones).
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum RequestKind {
+  PRAYER // petición de oración
+  VISIT // quiero visitar la iglesia
+  CONTACT // mensaje general
+}
+
+enum RequestStatus {
+  NEW
+  IN_PROGRESS
+  DONE
+}
+
+/// Lo que llega desde los formularios de la página.
+model ContactRequest {
+  id        String        @id @default(cuid())
+  kind      RequestKind
+  status    RequestStatus @default(NEW)
+  name      String
+  phone     String // E.164 sin "+": 573001234567
+  message   String?
+  /// La persona pidió que su petición no se comparta en público.
+  private   Boolean       @default(true)
+  /// Resultado de la sincronización con Wasapi (contacto + plantilla).
+  wasapiOk  Boolean       @default(false)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@index([kind, status, createdAt])
+}
+
+/// Cultos y reuniones de la semana (se pinta en la sección "Horarios").
+model Service {
+  id        String  @id @default(cuid())
+  title     String
+  /// 0 = domingo … 6 = sábado
+  dayOfWeek Int
+  /// "07:00 p. m."
+  time      String
+  note      String?
+  order     Int     @default(0)
+  active    Boolean @default(true)
+
+  @@index([active, order])
+}
+
+/// Eventos especiales (vigilias, convenciones, bautismos…).
+model Event {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  startsAt    DateTime
+  place       String?
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+
+  @@index([published, startsAt])
+}

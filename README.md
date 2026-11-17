@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ipucfb.com
 
-## Getting Started
+Página web de la congregación IPUC — *Un Señor, una fe, un bautismo* (Efesios 4:5).
 
-First, run the development server:
+## Stack
+
+- **Next.js 16** (App Router, Turbopack, `cacheComponents`) + React 19
+- **Tailwind CSS 4** con el design system IPUC (`src/app/globals.css`, vista en `/design-system`)
+- **Prisma 6 + Neon** (driver serverless `@prisma/adapter-neon`)
+- **Wasapi** (`@wasapi/js-sdk`) para llevar oraciones/visitas/mensajes a WhatsApp
+
+## Arranque
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+cp .env.example .env   # llena DATABASE_URL, DIRECT_URL y WASAPI_*
+pnpm db:migrate        # crea las tablas en Neon
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+La página funciona sin base de datos ni Wasapi (los horarios salen de `src/config/church.ts`),
+pero el formulario solo guarda/avisa cuando esas variables están configuradas.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Dónde cambiar las cosas
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Qué | Dónde |
+|---|---|
+| Nombre, dirección, pastores, WhatsApp, redes | `src/config/church.ts` (busca «POR CONFIRMAR») |
+| Horarios de cultos | tabla `Service` en Neon, o `defaultServices` en `src/config/church.ts` |
+| Colores, tipografía, sombras | `src/app/globals.css` (`@theme`) |
+| Secciones de la home | `src/components/sections/` |
+| Lógica de WhatsApp | `src/lib/wasapi.ts` |
 
-## Learn More
+## Design system
 
-To learn more about Next.js, take a look at the following resources:
+- Azul institucional `navy-700` `#00338d`, celeste `sky-500` `#009fda`, dorado `gold-400` `#f0ab00` (tomados de ipuc.org.co)
+- Tipografía: Source Sans 3 (texto, pariente libre de Myriad Pro) + Oswald (títulos)
+- Logos en `public/brand/` (IPUC azul y blanco, SonarPiano solo sobre fondo oscuro)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Desarrollado por amor, por ser siervo por amor, por [@thisalvarez](https://www.instagram.com/thisalvarez) · Financiado por [SonarPiano](https://sonarpiano.com)

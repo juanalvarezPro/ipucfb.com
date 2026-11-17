@@ -1,0 +1,39 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+import { ImageResponse } from "next/og";
+import { church } from "@/config/church";
+
+export const alt = church.motto;
+export const size = { width: 1200, height: 630 };
+export const contentType = "image/png";
+
+// Satori no pinta WebP: el logo va en PNG.
+export default async function OpengraphImage() {
+  const logo = await readFile(path.join(process.cwd(), "public/brand/ipuc-logo-white.png"));
+  const src = `data:image/png;base64,${logo.toString("base64")}`;
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "linear-gradient(180deg, #001f56 0%, #00338d 60%, #002a73 100%)",
+          color: "white",
+        }}
+      >
+        <img src={src} width={351} height={247} alt="" />
+        <div style={{ marginTop: 36, fontSize: 64, fontWeight: 700, letterSpacing: -1, textTransform: "uppercase" }}>
+          {church.motto}
+        </div>
+        <div style={{ marginTop: 12, fontSize: 28, color: "#f8c53d", letterSpacing: 6, textTransform: "uppercase" }}>
+          {church.mottoRef} · {church.domain}
+        </div>
+      </div>
+    ),
+    size,
+  );
+}
