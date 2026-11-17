@@ -5,25 +5,38 @@
  */
 export const church = {
   /** Nombre corto que se ve en el header */
-  shortName: "IPUC FB", // POR CONFIRMAR
+  shortName: "IPUC Ferrería Bariloche",
   /** Nombre completo de la congregación */
-  name: "Iglesia Pentecostal Unida de Colombia", // POR CONFIRMAR: añadir sede/congregación
+  name: "Iglesia Pentecostal Unida de Colombia · Ferrería Bariloche",
   domain: "ipucfb.com",
   motto: "Un Señor, una fe, un bautismo",
   mottoRef: "Efesios 4:5",
-  pastors: "Pastor y familia pastoral", // POR CONFIRMAR
+  /** Lema del año (bio de Instagram) */
+  yearTheme: "Levántate y resplandece",
+  yearThemeRef: "Isaías 60:1",
+  pastors: "Pastor Anderson Pabón",
+  pastorInstagram: "https://www.instagram.com/andersonpabon/",
   address: {
-    line: "Dirección del templo", // POR CONFIRMAR
-    city: "Colombia", // POR CONFIRMAR
-    mapsUrl: "https://maps.google.com/?q=Iglesia+Pentecostal+Unida+de+Colombia", // POR CONFIRMAR
+    line: "Calle 74 Sur #57-44",
+    area: "Portal de Ditaires",
+    city: "Itagüí, Antioquia",
+    /** Ficha de la iglesia en Google Maps (link de la bio de Instagram) */
+    mapsUrl:
+      "https://maps.google.com/?q=Iglesia+Pentecostal+Unida+de+Colombia+-+Ferrer%C3%ADa+Bariloche,+Cl.+74+Sur+%2357-44,+Portal+de+Ditaires,+Itag%C3%BCi,+Antioquia&ftid=0x8e46810031d60401:0xce7d8822f3a755b0",
+    wazeUrl: "https://waze.com/ul?q=Calle%2074%20Sur%2057-44%20Itag%C3%BCi%20Antioquia&navigate=yes",
   },
   /** WhatsApp de la iglesia (la línea conectada a Wasapi), solo dígitos */
-  whatsapp: "573000000000", // POR CONFIRMAR
-  email: "contacto@ipucfb.com", // POR CONFIRMAR
+  whatsapp: "", // POR CONFIRMAR
+  email: "", // POR CONFIRMAR
+  youtube: {
+    handle: "@Ipucferreriabariloche",
+    channelId: "UCMDnkdQZff6ASdPc5sKagkg",
+    url: "https://www.youtube.com/@Ipucferreriabariloche/streams",
+  },
   socials: {
-    youtube: "", // POR CONFIRMAR
+    youtube: "https://www.youtube.com/@Ipucferreriabariloche",
+    instagram: "https://www.instagram.com/ipucfb/",
     facebook: "",
-    instagram: "",
   },
 } as const;
 
@@ -37,11 +50,9 @@ export type ServiceItem = {
 
 /** Horarios de la semana (se usan si la base de datos aún no tiene cultos). */
 export const defaultServices: ServiceItem[] = [
-  { day: "Domingo", title: "Escuela Dominical", time: "9:00 a. m.", note: "Clases por edades" },
-  { day: "Domingo", title: "Culto de Adoración", time: "10:30 a. m.", note: "Servicio principal", highlight: true },
-  { day: "Martes", title: "Culto de Oración", time: "7:00 p. m." },
-  { day: "Jueves", title: "Culto de Enseñanza", time: "7:00 p. m.", note: "Estudio bíblico" },
-  { day: "Sábado", title: "Culto de Jóvenes", time: "6:00 p. m." },
+  { day: "Miércoles", title: "Culto de Enseñanza", time: "7:00 p. m.", note: "Estudio de la Palabra" },
+  { day: "Viernes", title: "Culto de Jóvenes", time: "7:00 p. m.", note: "Juventud encendida" },
+  { day: "Domingo", title: "Escuela Dominical", time: "10:00 a. m.", note: "Para toda la familia", highlight: true },
 ];
 
 export const whatsappLink = (text = "¡Hola! Quisiera más información sobre la iglesia 🙏") =>

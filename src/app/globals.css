@@ -123,3 +123,42 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ── REJUV 2.0: fuego (solo transform/opacity → corre en la GPU) ── */
+@utility text-fire {
+  background: linear-gradient(0deg, #ff3d00 0%, #ff8a00 45%, #ffd23f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 18px rgb(255 100 0 / 0.55));
+}
+
+.flame {
+  background: radial-gradient(circle at 50% 60%, #ffd23f 0%, #ff8a00 30%, #ff3d00 55%, transparent 72%);
+  filter: blur(18px);
+  opacity: 0;
+  animation: flame-rise 3s ease-in infinite;
+  will-change: transform, opacity;
+}
+@keyframes flame-rise {
+  0% { transform: translate(-50%, 0) scale(1); opacity: 0; }
+  15% { opacity: 0.85; }
+  100% { transform: translate(-50%, -110%) scale(0.35); opacity: 0; }
+}
+
+.ember {
+  opacity: 0;
+  box-shadow: 0 0 8px 2px rgb(255 160 0 / 0.8);
+  animation: ember-rise 4s linear infinite;
+}
+@keyframes ember-rise {
+  0% { transform: translate(0, 0); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translate(24px, -420px); opacity: 0; }
+}
+
+.portal-ring {
+  background: conic-gradient(from 0deg, #ff3d00, #ffd23f, #ff8a00, #ff3d00, #ffb000, #ff3d00);
+  filter: blur(2px) drop-shadow(0 0 30px rgb(255 110 0 / 0.7));
+  animation: spin 6s linear infinite;
+}

@@ -1,7 +1,7 @@
-import { CalendarClock, ChevronDown, MapPin } from "lucide-react";
+import { CalendarClock, ChevronDown, MapPin, PlayCircle } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/section";
-import { church, defaultServices, whatsappLink } from "@/config/church";
+import { church, defaultServices } from "@/config/church";
 
 /** Globo terráqueo en líneas — guiño al logo, puro SVG (sin peso de imagen). */
 function GlobeArt() {
@@ -56,7 +56,7 @@ export function Hero() {
         <div className="animate-rise text-center lg:text-left">
           <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-sky-100 backdrop-blur sm:text-sm">
             <span className="size-1.5 rounded-full bg-gold-400" />
-            Bienvenido a casa
+            {church.yearTheme} ✨ 2026
           </p>
 
           <h1 className="mt-6 font-display text-[2.9rem] font-semibold uppercase leading-[0.98] tracking-tight sm:text-7xl lg:text-[5.4rem]">
@@ -69,8 +69,8 @@ export function Hero() {
           <p className="mt-3 text-sm font-semibold uppercase tracking-[0.25em] text-sky-200">{church.mottoRef}</p>
 
           <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-navy-100/90 sm:text-xl lg:mx-0">
-            Somos una familia que adora a Dios en espíritu y en verdad. Hay un lugar para ti y para los tuyos:
-            ven tal como eres.
+            Somos la IPUC Ferrería Bariloche, una familia que adora a Dios en espíritu y en verdad. Hay un
+            lugar para ti y para los tuyos: ven tal como eres.
           </p>
 
           <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start">
@@ -78,8 +78,9 @@ export function Hero() {
               <MapPin className="size-5" aria-hidden />
               Planea tu visita
             </ButtonLink>
-            <ButtonLink href={whatsappLink()} external variant="outline" size="lg" className="w-full sm:w-auto">
-              Escríbenos por WhatsApp
+            <ButtonLink href="#en-vivo" variant="outline" size="lg" className="w-full sm:w-auto">
+              <PlayCircle className="size-5" aria-hidden />
+              Ver en vivo
             </ButtonLink>
           </div>
 

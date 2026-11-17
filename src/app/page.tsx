@@ -1,6 +1,6 @@
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { WhatsappFab } from "@/components/whatsapp-fab";
+import { LiveSection, RejuvSection } from "@/components/sections/live-and-rejuv";
 import { Hero } from "@/components/sections/hero";
 import { About, Beliefs, Ministries, PrayerSection, Schedule, VerseBanner, Visit } from "@/components/sections/content";
 import { church, siteUrl } from "@/config/church";
@@ -17,9 +17,14 @@ export default async function Home() {
     url: siteUrl,
     logo: `${siteUrl}/brand/icon-512.png`,
     slogan: church.motto,
-    telephone: `+${church.whatsapp}`,
-    email: church.email,
-    address: { "@type": "PostalAddress", streetAddress: church.address.line, addressCountry: "CO" },
+    sameAs: [church.socials.youtube, church.socials.instagram],
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: church.address.line,
+      addressLocality: "Itagüí",
+      addressRegion: "Antioquia",
+      addressCountry: "CO",
+    },
   };
 
   return (
@@ -32,7 +37,9 @@ export default async function Home() {
       <main>
         <Hero />
         <About />
+        <LiveSection />
         <Schedule services={services} />
+        <RejuvSection />
         <Beliefs />
         <VerseBanner />
         <Ministries />
@@ -40,7 +47,6 @@ export default async function Home() {
         <Visit />
       </main>
       <SiteFooter />
-      <WhatsappFab />
     </>
   );
 }

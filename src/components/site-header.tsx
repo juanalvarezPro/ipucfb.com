@@ -10,6 +10,7 @@ import { cn } from "@/lib/cn";
 
 const NAV = [
   { href: "#nosotros", label: "Nosotros" },
+  { href: "#en-vivo", label: "En vivo" },
   { href: "#horarios", label: "Horarios" },
   { href: "#creemos", label: "Lo que creemos" },
   { href: "#ministerios", label: "Ministerios" },

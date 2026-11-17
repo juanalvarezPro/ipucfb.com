@@ -8,7 +8,6 @@ import {
   HandHeart,
   Heart,
   MapPin,
-  MessageCircle,
   Music,
   Navigation,
   Sparkles,
@@ -18,7 +17,7 @@ import {
 import { ButtonLink } from "@/components/ui/button";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { RequestForm } from "@/components/sections/request-form";
-import { church, whatsappLink, type ServiceItem } from "@/config/church";
+import { church, type ServiceItem } from "@/config/church";
 import { cn } from "@/lib/cn";
 
 /* ── Nosotros ─────────────────────────────────────────────── */
@@ -276,25 +275,40 @@ export function Visit() {
                   <MapPin className="mt-0.5 size-6 shrink-0 text-gold-300" aria-hidden />
                   <span>
                     <span className="block font-semibold">{church.address.line}</span>
-                    <span className="text-navy-100/80">{church.address.city}</span>
+                    <span className="text-navy-100/80">
+                      {church.address.area} · {church.address.city}
+                    </span>
+                  </span>
+                </li>
+                <li className="flex gap-4">
+                  <Clock className="mt-0.5 size-6 shrink-0 text-gold-300" aria-hidden />
+                  <span>
+                    <span className="block font-semibold">Miércoles y viernes · 7:00 p. m.</span>
+                    <span className="text-navy-100/80">Domingo · 10:00 a. m.</span>
                   </span>
                 </li>
                 <li className="flex gap-4">
                   <Users className="mt-0.5 size-6 shrink-0 text-gold-300" aria-hidden />
                   <span>
-                    <span className="block font-semibold">{church.pastors}</span>
-                    <span className="text-navy-100/80">Pastores de la congregación</span>
+                    <a
+                      href={church.pastorInstagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block font-semibold underline decoration-gold-400/60 underline-offset-4 hover:text-gold-300"
+                    >
+                      {church.pastors}
+                    </a>
+                    <span className="text-navy-100/80">Pastor de la congregación</span>
                   </span>
                 </li>
               </ul>
-              <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-10 grid gap-3 sm:grid-cols-2">
                 <ButtonLink href={church.address.mapsUrl} external size="lg">
                   <Navigation className="size-5" aria-hidden />
-                  Cómo llegar
+                  Google Maps
                 </ButtonLink>
-                <ButtonLink href={whatsappLink("¡Hola! Quiero visitar la iglesia 🙌")} external variant="outline" size="lg">
-                  <MessageCircle className="size-5" aria-hidden />
-                  WhatsApp
+                <ButtonLink href={church.address.wazeUrl} external variant="outline" size="lg">
+                  Abrir en Waze
                 </ButtonLink>
               </div>
             </div>
@@ -331,7 +345,7 @@ export function Visit() {
               </span>
             </span>
             <span className="absolute bottom-5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-white/10 px-4 py-2 text-sm font-semibold backdrop-blur transition group-hover:bg-white/20">
-              Ver en Google Maps →
+              Portal de Ditaires · Itagüí →
             </span>
           </a>
         </div>

@@ -1,11 +1,14 @@
-import { Heart, Mail, MapPin, MessageCircle } from "lucide-react";
+import { Heart, MapPin } from "lucide-react";
+import { Instagram, Youtube } from "@/components/brand/social-icons";
 import { IpucLogo, SonarPianoLogo } from "@/components/brand/logos";
 import { Container } from "@/components/ui/section";
-import { church, whatsappLink } from "@/config/church";
+import { church } from "@/config/church";
 
 const LINKS = [
   { href: "#nosotros", label: "Nosotros" },
+  { href: "#en-vivo", label: "En vivo" },
   { href: "#horarios", label: "Horarios" },
+  { href: "#rejuv", label: "Rejuv 2.0" },
   { href: "#creemos", label: "Lo que creemos" },
   { href: "#ministerios", label: "Ministerios" },
   { href: "#oracion", label: "Petición de oración" },
@@ -74,19 +77,19 @@ export function SiteFooter() {
               <li className="flex gap-3">
                 <MapPin className="mt-0.5 size-5 shrink-0 text-sky-400" aria-hidden />
                 <span>
-                  {church.address.line}, {church.address.city}
+                  {church.address.line}, {church.address.area}, {church.address.city}
                 </span>
               </li>
               <li>
-                <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="flex gap-3 transition hover:text-white">
-                  <MessageCircle className="mt-0.5 size-5 shrink-0 text-sky-400" aria-hidden />
-                  WhatsApp
+                <a href={church.socials.youtube} target="_blank" rel="noopener noreferrer" className="flex gap-3 transition hover:text-white">
+                  <Youtube className="mt-0.5 size-5 shrink-0 text-sky-400" aria-hidden />
+                  YouTube
                 </a>
               </li>
               <li>
-                <a href={`mailto:${church.email}`} className="flex gap-3 break-all transition hover:text-white">
-                  <Mail className="mt-0.5 size-5 shrink-0 text-sky-400" aria-hidden />
-                  {church.email}
+                <a href={church.socials.instagram} target="_blank" rel="noopener noreferrer" className="flex gap-3 transition hover:text-white">
+                  <Instagram className="mt-0.5 size-5 shrink-0 text-sky-400" aria-hidden />
+                  @ipucfb
                 </a>
               </li>
             </ul>
@@ -96,9 +99,9 @@ export function SiteFooter() {
         {/* Créditos */}
         <div className="flex flex-col items-center gap-8 border-t border-white/10 py-10 text-center lg:flex-row lg:justify-between lg:text-left">
           <p className="max-w-md text-sm leading-relaxed text-navy-200/80">
-            Desarrollado por amor{" "}
-            <Heart className="inline size-4 -translate-y-px fill-red-500 text-red-500" aria-hidden />, por ser siervo
-            por amor, por{" "}
+            Desarrollado por amor
+            <Heart className="ml-1 inline size-4 -translate-y-px fill-red-500 text-red-500" aria-hidden />, como siervo por
+            amor —{" "}
             <a
               href="https://www.instagram.com/thisalvarez"
               target="_blank"
@@ -106,19 +109,20 @@ export function SiteFooter() {
               className="font-semibold text-white underline decoration-gold-400 decoration-2 underline-offset-4 transition hover:text-gold-300"
             >
               @thisalvarez
-            </a>
+            </a>{" "}
+            · <span className="whitespace-nowrap italic text-gold-300">Éxodo 21:5</span>
           </p>
           <a
             href="https://sonarpiano.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex flex-col items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.04] px-6 py-4 transition hover:border-sky-400/40 hover:bg-white/[0.07] sm:flex-row sm:gap-4"
+            className="group inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 transition hover:border-sky-400/40 hover:bg-white/[0.06]"
           >
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-200/70">Financiado por</span>
-            <SonarPianoLogo className="w-36 transition group-hover:scale-[1.03]" />
+            <span className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-navy-200/60">Financiado por</span>
+            <SonarPianoLogo className="w-20 opacity-90 transition group-hover:opacity-100" />
           </a>
         </div>
-        <p className="pb-24 text-center text-xs text-navy-300/60 sm:pb-8">
+        <p className="pb-8 text-center text-xs text-navy-300/60">
           © <Year /> {church.domain} · Todos los derechos reservados
         </p>
       </Container>
