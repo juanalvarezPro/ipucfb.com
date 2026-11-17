@@ -131,8 +131,8 @@ export function RegistrationWizard() {
     if (s === 0) {
       if ((f.firstName ?? "").trim().length < 2) return "Escribe tu nombre";
       if ((f.lastName ?? "").trim().length < 2) return "Escribe tu apellido";
-      if (!f.birthDate) return "¿Cuándo es tu cumpleaños?";
-      if (age == null || age < 10 || age > 40) return "Revisa tu fecha de cumpleaños";
+      if (!f.birthDate) return "Escribe tu fecha de nacimiento";
+      if (age == null || age < 10 || age > 40) return "Revisa tu fecha de nacimiento";
       if ((f.whatsapp ?? "").replace(/\D/g, "").length < 10) return "Escribe tu WhatsApp (10 dígitos)";
       if (minor && (!(f.guardianName ?? "").trim() || (f.guardianPhone ?? "").replace(/\D/g, "").length < 10))
         return "Como eres menor de edad, necesitamos el nombre y WhatsApp de tu acudiente";
@@ -233,7 +233,7 @@ export function RegistrationWizard() {
                 <Field label="¿Cómo te gusta que te digan?">
                   <input className={input} value={f.nickname ?? ""} onChange={(e) => set("nickname", e.target.value)} placeholder="Tu apodo" />
                 </Field>
-                <Field label="Cumpleaños *" hint={age != null ? `Tienes ${age} años 🎂` : undefined}>
+                <Field label="Fecha de nacimiento *" hint={age != null ? `Tienes ${age} años` : undefined}>
                   <input type="date" className={cn(input, "[color-scheme:dark]")} value={f.birthDate} onChange={(e) => set("birthDate", e.target.value)} />
                 </Field>
                 <Field label="WhatsApp *">

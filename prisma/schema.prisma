@@ -79,7 +79,7 @@ model YouthRegistration {
   firstName    String
   lastName     String
   nickname     String? /// ¿Cómo te gusta que te digan?
-  birthDate    DateTime @db.Date /// Cumpleaños
+  birthDate    DateTime @db.Date /// Fecha de nacimiento
   gender       String? /// hombre | mujer
   whatsapp     String /// E.164 sin "+": 573001234567
   instagram    String?

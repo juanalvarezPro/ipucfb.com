@@ -39,7 +39,7 @@ const schema = z.object({
   firstName: z.string().trim().min(2, "Escribe tu nombre").max(60),
   lastName: z.string().trim().min(2, "Escribe tu apellido").max(60),
   nickname: text(40),
-  birthDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Escribe tu fecha de cumpleaños"),
+  birthDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Escribe tu fecha de nacimiento"),
   gender: one("gender"),
   whatsapp: z.string().trim().min(7, "Escribe tu WhatsApp"),
   instagram: text(40),
@@ -88,7 +88,7 @@ export async function registerYouth(input: RegisterInput): Promise<RegisterState
   const birth = new Date(`${d.birthDate}T12:00:00Z`);
   const age = ageOn(birth);
   if (Number.isNaN(birth.getTime()) || age < 10 || age > 40) {
-    return { status: "error", message: "Revisa tu fecha de cumpleaños" };
+    return { status: "error", message: "Revisa tu fecha de nacimiento" };
   }
 
   const whatsapp = normalizePhone(d.whatsapp);
